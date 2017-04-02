@@ -7,7 +7,7 @@ var r=5;
 var margin_top=60;
 var margin_left=30;
 
-const endTime=new Date(2017,3,3,10,39,30);
+const endTime=new Date(2017,3,2,20,39,30);
 var curShowTimeSeconds=0;
 
 
