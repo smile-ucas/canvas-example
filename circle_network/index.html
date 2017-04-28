@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制点构成的三层同心圆 相邻圆中节点间通信用连线表示</title>
+    <style>
+        html,body{
+            height:100%;
+            width:100%;
+        }
+    </style>
+
+</head>
+<body>
+<canvas id="canvas" style="margin:0 auto">请更换浏览器</canvas>
+<script>
+    var t=[
+        {p:[],color:"orange"},
+        {p:[],color:"red"},
+        {p:[],color:"blue"}
+    ]
+    var l=[
+        {p:[{x1:400,y1:0,x2:400,y2:100}],color:"pink"},
+        {p:[],color:"yellow"}
+    ];
+    CenterOut = (400,400);
+    ROut = 400;
+    CenterMid = (400,400);
+    RMid = 300;
+    CenterInner =(400, 400);
+    RInner = 200;
+    CreateCirclePoint(CenterOut,ROut,0);
+    CreateCirclePoint(CenterMid,RMid,1);
+    CreateCirclePoint(CenterInner,RInner,2);
+    window.onload=function () {
+        var canvas=document.getElementById("canvas");
+
+        canvas.height=800;
+        canvas.width=800;
+        var context =canvas.getContext('2d');
+
+
+        DrawCircle(t,context);
+        DrawLine(l,context);
+
+    }
+
+    function DrawCircle(pi,cxt) {
+        console.log(pi.length)
+        for(var k=0;k<pi.length;k++){
+            console.log(k);
+            cxt.beginPath();
+            cxt.moveTo(pi[k].p[k].x,pi[k].p[k].y);
+            for(var i=1;i<pi[k].p.length;i++){
+                cxt.lineTo(pi[k].p[i].x,pi[k].p[i].y);
+            }
+            cxt.closePath();
+
+            cxt.strokeStyle=pi[k].color;
+            cxt.stroke();
+        }
+    }
+    function DrawLine(l,cxt) {
+        cxt.beginPath();
+        cxt.moveTo(l[0].p[0].x1,l[0].p[0].y1);
+            cxt.lineTo(l[0].p[0].x2,l[0].p[0].y2);
+        cxt.closePath();
+
+        cxt.strokeStyle=l[0].color;
+        cxt.stroke();
+    }
+    function CreateCirclePoint(c,r,OMI) {
+        num = 1000;
+        SingleAngle = Math.PI*2/num;
+        temp = t[OMI].p;
+        for(i=0;i<num;i++){
+            xi = c + r*Math.cos(SingleAngle*i);
+            yi = c + r*Math.sin(SingleAngle*i);
+            item = {x:xi,y:yi};
+            temp.push(item);
+        }
+    }
+</script>
+</body>
+</html>
