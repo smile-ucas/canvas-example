@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cnavas绘制电子数字</title>
+    <script src="digit.js"></script>
+</head>
+<body>
+<canvas id="canvas" style="">请更换浏览器</canvas>
+<script>
+    window.onload=function () {
+        var canvas=document.getElementById("canvas");
+
+        canvas.height=25;
+        canvas.width=25;
+        var context =canvas.getContext('2d');
+
+        render(context);
+    }
+    function render(cxt) {
+        cxt.clearRect(0, 0, "200px", "200px");
+        renderDigit(0,0,3, cxt);
+    }
+    function renderDigit(x, y, num, cxt) {
+        cxt.fillStyle = "blue";
+        var r=.1;
+        for (var i = 0; i < digit[num].length; i++) {
+            for (var j = 0; j < digit[num][i].length; j++) {
+                if (digit[num][i][j] == 1) {
+                    cxt.beginPath();
+                    cxt.arc(x + j * 2 * (r + 1) + (r + 1), y + i * 2 * (r + 1) + (r + 1), r, 0, 2 * Math.PI);
+                    cxt.closePath();
+
+                    cxt.fill();
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
