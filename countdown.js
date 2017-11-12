@@ -7,7 +7,13 @@ var r=5;
 var margin_top=60;
 var margin_left=30;
 
-const endTime=new Date(2017,10,9,20,39,30);
+// var tempTime=new Date();
+// console.log(Date.parse(new Date()))
+// endTime=new Date(2017,10,13,20,39,30);
+// console.log(endTime.getTime())
+
+// const endTime=new Date().getTime()+180;
+const endTime=Date.parse(new Date())+10700000;
 var curShowTimeSeconds=0;
 
 
@@ -137,7 +143,7 @@ function update() {
 
 function getCurShowTimeSeconds() {
     var curTime=new Date();
-    var ret=endTime.getTime()-curTime.getTime();
+    var ret=endTime-curTime.getTime();
 
     ret=Math.round(ret/1000); //把毫秒化成秒
 
