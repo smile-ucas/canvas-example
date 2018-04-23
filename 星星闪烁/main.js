@@ -38,7 +38,7 @@ function gameloop() {
 
 
 function addImage() {
-    ctx.drawImage(pic,100,100,400,600)
+    ctx.drawImage(pic,30,20,240,360)
 }
 function drawBackground() {
     ctx.fillStyle = "#383838"
